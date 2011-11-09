@@ -1,0 +1,43 @@
+﻿@main[]
+	^use_module[phone]
+
+	^switch[$form:act]{
+		^case[update]{
+			^if(def $form:title){
+				$params[$form:fields]
+				$id(^phone:update[$params])
+			}
+			^throw[kernel.location;^request:uri.left(^request:uri.pos[?])?id=$id]
+		}
+		^case[delete]{
+			^phone:delete(^form:id.int(0))
+			^throw[kernel.location;^request:uri.left(^request:uri.pos[?])]
+		}
+		^case[edit]{
+			^if(^form:id.int(0)){
+				$phone[^phone::phone[
+					$.id($form:id)
+					$.admin(true)
+				]]
+				$phone.escape-xml(true)
+				^phone.xml-string[phone-form]
+			}{
+				^phone:xml-string[phone-form]
+			}
+		}
+		^case[DEFAULT]{
+			^if(^form:id.int(0)){
+				$phone[^phone::phone[
+					$.id($form:id)
+					$.admin(true)
+				]]
+				^phone.xml-string[]
+			}{
+				$phones[^phone::list[
+					$.admin(true)
+				]]
+				^phones.xml-string[phones]
+			}
+		}
+	}
+	^Templates.add[admin/phones.xsl]

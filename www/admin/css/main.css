@@ -7,6 +7,7 @@ body, td { font: 13px Tahoma, sans-serif; }
 h1, h2 { font: normal 24px Georgia, serif; color: darkred; padding: 10px 0 0 0; margin: 0; }
 h2 { font-size: 20px; color: gray; margin-bottom: 10px;}
 p { padding: 0; margin: 10px 0 10px 0; }
+ol li{ margin-bottom: 10px; }
 td#menu { border-bottom: 5px solid #e0e0e0; clear: both; margin-bottom: 1em;}
 td#submenu{
 	background:whitesmoke;
