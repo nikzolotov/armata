@@ -1,0 +1,20 @@
+#container{
+	width: expression((documentElement.clientWidth||document.body.clientWidth)<990?'990px':'auto');
+	}
+#content .gallery li img{
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/frame.png', sizingMethod='crop');
+	}
+#content .gallery li span{
+	font-size: 0;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/img/fade.png', sizingMethod='crop');
+	}
+#promo .description div{
+	height: 172px;
+	padding: 0 30px 0 30px;
+	}
+#header,
+#header .menu{
+	zoom: 1;
+	}

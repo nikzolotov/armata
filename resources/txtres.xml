@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<txtres>
+	<resources lang="ru">
+		<language>Русский</language>
+		<title>Армата</title>
+		<phone>
+			<code>+7 (495)</code>
+			<number>702-90-23</number>
+		</phone>
+		<address>
+			<country-name>Россия</country-name>
+			<region>Московская обл.</region>
+			<locality>г. Ногинск, дер. Молзино</locality>
+			<street-address>ул. Советская, д. 18б</street-address>
+		</address>
+		<slogan>Производство деталей совершенного интерьера.<br/>От проекта до воплощения.</slogan>
+		<small-slogan>Армата — страсть к совершенству.</small-slogan>
+		<copyright>«АРМАТА» является зарегистрированной торговой маркой.<br/>Авторские права на содержание опубликованных на сайте текстов и изображений защищены.<br/>Использование материалов с сайта разрешено только с письменного согласия правобладателя, в случае публикации в интернет — обязательна действующая гиперссылка на <a class="masked" href="http://www.armata.ru/">www.armata.ru</a></copyright>
+		<developer><a class="masked" href="http://www.infolio.ru/">Создание сайта</a> —<br/>Студия <a class="fn org url" href="http://www.infolio.ru/">infolio / 2°</a></developer>
+		<monthes>
+			<month number="01">Январь</month>
+			<month number="02">Февраль</month>
+			<month number="03">Март</month>
+			<month number="04">Апрель</month>
+			<month number="05">Май</month>
+			<month number="06">Июнь</month>
+			<month number="07">Июль</month>
+			<month number="08">Август</month>
+			<month number="09">Сентябрь</month>
+			<month number="10">Октябрь</month>
+			<month number="11">Ноябрь</month>
+			<month number="12">Декабрь</month>
+		</monthes>
+		<monthesr>
+			<month number="01">января</month>
+			<month number="02">февраля</month>
+			<month number="03">марта</month>
+			<month number="04">апреля</month>
+			<month number="05">мая</month>
+			<month number="06">июня</month>
+			<month number="07">июля</month>
+			<month number="08">августа</month>
+			<month number="09">сентября</month>
+			<month number="10">октября</month>
+			<month number="11">ноября</month>
+			<month number="12">декабря</month>
+		</monthesr>
+	</resources>
+</txtres>

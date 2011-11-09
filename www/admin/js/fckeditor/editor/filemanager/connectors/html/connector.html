@@ -1,0 +1,166 @@
+@USE
+kernel.p
+#/USE
+
+@auto[]
+$response:Expires[Mon, 26 Jul 1997 05:00:00 GMT]
+#$response:Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT') ;
+$response:Cache-Control[no-store, no-cache, must-revalidate]
+$response:Cache-Control: post-check=0, pre-check=0]
+$response:Pragma[no-cache]
+
+$request:charset[utf-8]
+$response:charset[utf-8]
+$response:content-type[
+        $.value[text/xml]
+        $.charset[$response:charset]
+]
+#/set_headers
+
+@SendError[number;text]
+$result[<?xml version="1.0" encoding="utf-8" ?>
+<Connector>
+	<Error number="$number" text="$text" />
+</Connector>]
+^throw[exit;$result]
+#/SendError
+
+@SendResults[r]
+#	errorNumber	fileUrl	fileName	customMsg
+$result[
+<script type="text/javascript">
+	window.parent.OnUploadCompleted(
+		$r.errorNumber,
+		"^taint[js][$r.fileUrl]",
+		"^taint[js][$r.fileName]", 
+		"^taint[js][$r.customMsg]")^;
+</script>]
+^throw[exit;$result]
+#/SendResults
+
+
+@main[]
+^try{
+	^use_module[share]
+	$l[^share::tree[]]
+#	^l.table.menu{
+#	<item name="$l.table.name" pid="$l.table.pid"></item>
+#	}
+	^if(def $l.table && ^l.table.locate($l.table.name eq ".fckeditor")){
+		$pid($l.table.share_id)
+	}{
+		$pid(^share:create-dir[.fckeditor])
+	}
+	$path[/]
+	^if(def $form:CurrentFolder){
+		$p[^form:CurrentFolder.split[/]]
+		^if(def $p){
+			^p.menu{
+				^if(def $p.piece){
+					^if(^l.table.locate($l.table.name eq $p.piece && $l.table.type eq dir && $l.table.pid eq $pid)){
+						$pid[$l.table.share_id]
+						$path[${path}$l.table.name/]
+					}
+				}
+			}
+		}
+	}
+	^if($form:Command eq FileUpload){
+		$errno[202]
+		^if($form:NewFile is file){
+			$errno[0]
+			$i(0)
+			$fn[$form:NewFile.name]
+			^while(^l.table.locate($l.table.name eq $fn && $l.table.pid eq $pid)){
+				$i($i+1)
+				$fn[^file:justname[$form:NewFile.name]_${i}.^file:justext[$form:NewFile.name]]
+				$errno[201]
+			}
+			^try{
+				$share_id[^share:add[$form:NewFile;$pid;$fn]]
+				$types[^table::create{type
+bmp
+jpg
+gif
+png
+}]
+				^if(^types.locate($types.type eq ^file:justext[$fn])){
+					^share:create_preview[$share_id]
+				}
+			}{
+				$exception.handled(true)
+				$errno[202]
+			}
+		}
+		$response:content-type[
+		        $.value[text/html]
+		        $.charset[$response:charset]
+		]
+		$res[<script type="text/javascript">
+window.parent.frames["frmUpload"].OnUploadCompleted($errno,"$fn")^;
+</script>]
+		^throw[exit;$res]
+	}
+<?xml version="1.0" encoding="utf-8" ?>
+<Connector command="$form:Command" resourceType="$form:Type">
+<CurrentFolder path="$path" url="${MAIN:SHARE_DIR}$path" pid="$pid" />
+	^switch[$form:Command]{
+		^case[GetFolders]{
+			$s[^share::list[$pid]]
+			<Folders>
+			^if(def $s.table && $s.table is table){
+				^s.table.menu{
+					^if($s.table.type eq dir){
+						<Folder name="$s.table.name" id="$s.table.share_id" />
+					}
+				}
+			}
+			</Folders>
+		}
+		^case[GetFoldersAndFiles]{
+			^if(def $form:del){
+				^share:delete[$form:del]
+				^share:free[]
+			}
+			$s[^share::list[$pid]]
+			<Folders>
+			^if(def $s.table && $s.table is table){
+				^s.table.menu{
+					^if($s.table.type eq dir){
+						<Folder name="$s.table.name" id="$s.table.share_id" />
+					}
+				}
+			}
+			</Folders>
+			<Files>
+			^if(def $s.table && $s.table is table){
+				^s.table.menu{
+					^if($s.table.type ne dir){
+						<File url="${MAIN:SHARE_DIR}${path}${s.table.share_id}.^file:justext[$s.table.name]" name="$s.table.name" size="^math:floor($s.table.size/1024)" id="$s.table.share_id" ^if(def $s.table.preview){preview="$s.table.preview"} />
+					}
+				}
+			}
+			</Files>
+		}
+		^case[CreateFolder]{
+			^try{
+				<Error number="0" originalDescription="" />
+				$id[^share:create-dir[$form:NewFolderName;$pid]]
+			}{
+				$exception.handled(true)
+				<Error number="101" originalDescription="" />
+			}
+		}
+	}
+</Connector>
+}{
+	^if($exception.type eq exit){
+		$exception.handled(true)
+		^taint[as-is][$exception.source]
+	}
+}
+#/main
+
+@postprocess[t]
+$t
+#/posprocess

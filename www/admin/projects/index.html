@@ -1,0 +1,63 @@
+﻿@GET_type[]
+	$result[]
+	^if(def $form:type){
+		$parent[^Navigation.documentElement.selectSingle[//item[@key = 'projects']//item[@key = '$form:type']]]
+		^if(def $parent && $parent is xnode){
+			$result[^parent.getAttribute[type]]
+		}
+	}
+
+@main[]
+	^use_module[project]
+	^use_module[tidy]
+
+	^switch[$form:act]{
+		^case[update]{
+			^if(def $form:title){
+				$params[$form:fields]
+				$params.type($type)
+				$params.body[^tidy[$form:body]]
+				$params.see_also[^tidy[$form:see_also]]
+				$params.date[^date::create($form:year;$form:month;$form:day;$form:hour;$form:minute)]
+				$params.date[^params.date.sql-string[]]
+				$id(^project:update[$params])
+			}
+			^throw[kernel.location;^request:uri.left(^request:uri.pos[?])?id=$id]
+		}
+		^case[delete]{
+			^project:delete(^form:id.int(0))
+			^throw[kernel.location;^request:uri.left(^request:uri.pos[?])]
+		}
+		^case[edit]{
+			^if(^form:id.int(0)){
+				$project[^project::project[
+					$.id($form:id)
+					$.admin(true)
+				]]
+				$project.escape-xml(true)
+				^project.xml-string[project-form]
+			}{
+				^project:xml-string[project-form]
+			}
+		}
+		^case[DEFAULT]{
+			^if(^form:id.int(0)){
+				$project[^project::project[
+					$.id($form:id)
+					$.admin(true)
+				]]
+				^project.xml-string[]
+			}{
+				^if($type){
+					$projects[^project::list[
+						$.type($type)
+						$.admin(true)
+					]]
+					^projects.xml-string[projects]
+				}{
+					<choose-type/>
+				}
+			}
+		}
+	}
+	^Templates.add[admin/projects.xsl]

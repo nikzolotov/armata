@@ -1,0 +1,588 @@
+/*
+ * armata.ru main styles
+ * Author: Zolotov Nikita (nikita at infolio.ru)
+ *
+ */
+
+/* =Layout
+----------------------------------------------*/
+#container-wrapper{
+	background: url('../img/ruler.gif') repeat-x;
+	}
+#container{
+	min-width: 990px;
+	max-width: 1100px;
+	}
+#header{
+	position: relative;
+	width: 100%;
+	padding: 40px 0;
+	}
+#promo{
+	padding-top: 1px;
+	margin-bottom: 40px;
+	}
+.wrapper-fix{
+	width: 100%;
+	}
+	.wrapper{
+		float: left;
+		width: 100%;
+		}
+		#content{
+			margin: 0 28% 0 0;
+			}
+	.main-content{
+		padding-left: 232px;
+		}
+	#extra{
+		float: left;
+		margin-left: -100%;
+		width: 155px;
+		padding: 3.25em 0 0 25px;
+		}
+#navigation{
+	float: left;
+	width: 22%;
+	margin-left: -22%;
+	}
+#footer{
+	position: relative;
+	clear: left;
+	padding: 1px 22% 3em 232px;
+	}
+
+/* =Header
+----------------------------------------------*/
+#header h1{
+	width: 299px;
+	height: 47px;
+	margin: 0 0 .6125em 232px;
+	text-indent: -9999px;
+	background: url('../img/logo.png') no-repeat;
+	}
+	#header h1 a{
+		display: block;
+		width: 299px;
+		height: 47px;
+		border: none;
+		background: none;
+		}
+#header em{
+	display: block;
+	margin: 0 0 2.25em 232px;
+	font: normal 1.125em/1.3 Georgia, "Times New Roman", Times, serif;
+	color: #626262;
+	}
+#header ul{
+	padding-top: .25em;
+	}
+	#header li{
+		float: left;
+		list-style: none;
+		text-transform: uppercase;
+		}
+		#header li a,
+		#header li strong{
+			display: block;
+			margin-right: 35px;
+			padding-bottom: 3px;
+			font: bold .75em Arial, Helvetica, sans-serif;
+			color: #00184a;
+			border: none;
+			background: url('../img/main_menu_marker.gif') no-repeat 0 bottom;
+			}
+		#header .active a,
+		#header .active strong,
+		#header li a:hover{
+			padding-bottom: 0;
+			border-bottom: 3px solid #b9945f;
+			background: none;
+			}
+		#header li a:hover{
+			border-bottom: 3px solid #d5dbe9;
+			}
+#header .menu{
+	position: relative;
+	padding-left: 232px;
+	}
+	#header .menu p{
+		position: absolute;
+		top: .25em;
+		left: 25px;
+		padding: 0 0 1em 20px;
+		font-size: .75em;
+		background: url('../img/ico/map.gif') no-repeat 0 .3em;
+		}
+		#header .menu p a{
+			color: #37548e;
+			}
+#header .contacts{
+	position: absolute;
+	top: 40px;
+	left: 78%;
+	width: 22%;
+	}
+	#header .contacts p{
+		font-size: .875em;
+		white-space: nowrap;
+		}
+	#header .contacts .phone{
+		position: relative;
+		left: -20px;
+		padding: 0 0 .25em 20px;
+		font: normal 1.25em Georgia, "Times New Roman", Times, serif; 
+		background: url('../img/ico/phone.gif') no-repeat 0 .3em;
+		}
+		#header .phone em{
+			margin: 0;
+			color: #00184a;
+			}
+	#header .contacts .other{
+		padding-bottom: 1em;
+		font-size: .75em;
+		}
+		#header .contacts .other a{
+			color: #37548e;
+			}
+
+/* =Promo
+----------------------------------------------*/
+#promo .specialization{
+	float: left;
+	width: 187px;
+	padding-left: 25px;
+	}
+	#promo .specialization ul{
+		}
+		#promo .specialization li{
+			height: 2em;
+			margin-left: -8px;
+			padding: 0 0 0 8px;
+			list-style: none;
+			line-height: 1.6;
+			}
+			#promo .specialization li a{
+				font-size: .8125em;
+				color: #37548e;
+				}
+		#promo .specialization li.selected{
+			background: #ccd7e1 url('../img/ico/right_blue.gif') no-repeat 165px .75em;
+			}
+#promo .illustration{
+	float: left;
+	width: 547px;
+	height: 190px;
+	font-size: 0;
+	line-height: 0;
+	}
+	#promo .illustration img{
+		border: 1px solid #aaa;
+		}
+#promo .description{
+	min-height: 172px;
+	margin: 8px 2% 0 759px;
+	background: #e5e2d1 url('../img/promo_bg.png') repeat-x;
+	}
+	#promo .description div{
+		padding: 0 10%;
+		}
+		#promo .description h3{
+			height: 25px;
+			max-width: 300px;
+			padding: 13px 0 0 0;
+			font-size: .875em;
+			font-weight: normal;
+			line-height: 1;
+			}
+		#promo .description p{
+			height: 95px;
+			font-size: .75em;
+			line-height: 1.2;
+			}
+		#promo .description .examples{
+			height: auto;
+			}
+		
+
+/* =Navigation
+----------------------------------------------*/
+#navigation .sub-menu{
+	margin-bottom: 5em;
+	}
+	#navigation .sub-menu li{
+		margin-bottom: .375em;
+		list-style: none;
+		font-size: .875em;
+		}
+	#navigation .sub-menu .active{
+		position: relative;
+		left: -15px;
+		padding-left: 15px;
+		background: url('../img/ico/left.gif') no-repeat 0 .4em;
+		}
+	#navigation .sub-menu .active-parent em{
+		padding-right: 15px;
+		font-style: normal;
+		background: url('../img/ico/down.gif') no-repeat 100% .6em;
+		}
+		#navigation .sub-menu li ul{
+			padding: .5em 0 .75em 20px;
+			}
+#navigation .another-menu li{
+	margin-bottom: .5em;
+	padding-left: 22px;
+	list-style: none;
+	font-size: .8125em;
+	background: url('../img/list_item.gif') no-repeat 0 .8em;
+	}
+#navigation .catalog .dashed{
+	color: #37548e;
+	}
+#navigation .sub-menu .highlighted{
+	position: relative;
+	left: -20px;
+	padding: .5em 0 .75em 20px;
+	background-color: #fcfebf;
+	background-position: 5px 50%;
+	}
+#navigation .sub-menu .highlighted-next{
+	margin-top: -1.1em;
+	}
+
+/* =Extra
+----------------------------------------------*/
+#extra ul.context{
+	font-size: .75em;
+	}
+	#extra ul.context li{
+		margin-bottom: 1.25em;
+		}
+#extra .news{
+	margin-bottom: 4em;
+	line-height: 1.2;
+	}
+	#extra .news li{
+		padding: 0;
+		background: none;
+		}
+		#extra .news li li{
+			padding-left: 22px;
+			background: url('../img/list_item.gif') no-repeat 0 .8em;
+			}
+#extra .nearest-news{
+	margin: 0 0 2.5em -25px;
+	font-size: 1em;
+	}
+	#extra .nearest-news li{
+		margin: 0;
+		padding: 0 0 .75em 0;
+		background: none;
+		}
+	#extra .nearest-news .separated{
+		padding-top: .75em;
+		border-top: 1px solid #ccc;
+		background: url('../img/news_separator.png') no-repeat;
+		}
+		#extra .nearest-news li div{
+			padding-left: 25px;
+			}
+		#extra .nearest-news .next div{
+			padding-top: 8px;
+			background: url('../img/ico/up.gif') no-repeat 26px 0;
+			}
+		#extra .nearest-news .prev div{
+			padding-bottom: 6px;
+			background: url('../img/ico/down.gif') no-repeat 26px 100%;
+			}
+		#extra .nearest-news h3{
+			margin-bottom: .25em;
+			font: normal .8125em "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+			}
+		#extra .nearest-news p{
+			font-size: .75em;
+			line-height: 1.2;
+			}
+#extra p{
+	margin-bottom: 1em;
+	font-size: .75em;
+	line-height: 1;
+	color: #676767;
+	}
+#extra img{
+	margin: 0;
+	border: none;
+	}
+#extra .contacts,
+#extra .context{
+	margin: 0 0 2em 0;
+	}
+	#extra .contacts p{
+		padding-right: 3em;
+		}
+	#extra .contacts img{
+		margin: 0 0 .5em 20px;
+		border: none;
+		}
+#extra .files,
+#content .files{
+	margin: 0 0 0 -5px;
+	font-size: 1em;
+	}
+	#extra .files li,
+	#content .files li{
+		min-height: 40px;
+		margin-bottom: 3em;
+		padding-left: 56px;
+		font-size: .75em;
+		}
+		#extra .files li span,
+		#content .files li span{
+			display: block;
+			}
+	#extra .files .xls,
+	#content .files .xls{
+		background: url('../img/ico/file/xls.gif') no-repeat;
+		}
+	#extra .files .doc,
+	#content .files .doc{
+		background: url('../img/ico/file/doc.gif') no-repeat;
+		}
+#extra .signed-images{
+	margin-top: 0;
+	}
+	#extra .signed-images li{
+		margin-bottom: 1em;
+		text-align: center;
+		padding: 0;
+		background: none;
+		}
+		#extra .signed-images em{
+			font-style: normal;
+			}
+#extra .spacing-out li{
+	margin-bottom: 2.5em;
+	}
+#extra .text-list{
+	margin-bottom: 2em;
+	font-size: .75em;
+	line-height: 1;
+	color: #676767;
+	}
+	#extra .text-list li{
+		background-position: 0 .6em;
+		}
+
+/* =Footer
+----------------------------------------------*/
+#footer em{
+	display: block;
+	margin-bottom: 2em;
+	font: italic 1.0625em Georgia, "Times New Roman", Times, serif;
+	}
+#footer p,
+#footer address{
+	margin-bottom: 1em;
+	padding-right: 40px;
+	font-size: .6125em;
+	font-style: normal;
+	color: #676767;
+	}
+	#footer address .org{
+		text-transform: uppercase;
+		}
+#footer ul{
+	margin: 2em 0;
+	font-size: .75em;
+	}
+	#footer li{
+		float: left;
+		margin-right: 1em;
+		padding-bottom: 1px;
+		list-style: none;
+		}
+#footer .partners{
+	margin: 0;
+	}
+	#footer .partners a{
+		border: none;
+		background: none;
+		}
+#footer .developer{
+	position: absolute;
+	right: 40px;
+	top: 6.5em;
+	padding: 0 0 1em 0;
+	font-size: .75em;
+	}
+#footer a{
+	color: #676767;
+	}
+
+/* =Common
+----------------------------------------------*/
+.hidden{
+	display: none;
+	visibility: hidden;
+	}
+hr.short{
+	clear: both;
+	width: 80px;
+	height: 2px;
+	margin: 2em 0 1.5em -20px;
+	text-align: left;
+	color: #ccc;
+	border-style: none;
+	background: #ccc;
+	}
+a.dashed{
+	text-decoration: none;
+	border-bottom: 1px dashed;
+	}
+a.masked{
+	color: #333;
+	border: none;
+	background: none;
+	}
+h2.directing,
+#content h2.directing{
+	width: 125px;
+	margin-bottom: 1em;
+	padding-right: 15px;
+	font: normal 1em Georgia, "Times New Roman", Times, serif;
+	color: #00184a;
+	background: url('../img/ico/down_hollow.gif') no-repeat right top;
+	}
+
+/* =Content
+----------------------------------------------*/
+#content .intro{
+	font-size: .9375em;
+	}
+#content .gallery{
+	clear: left;
+	padding-left: 22px;
+	}
+	#content .gallery ul{
+		margin-right: -40px;
+		font-size: .75em;
+		}
+		#content .gallery li{
+			position: relative;
+			float: left;
+			width: 145px;
+			height: 93px;
+			margin: 0;
+			padding: 123px 15px 1em 25px;
+			overflow: hidden;
+			line-height: 1.4em;
+			background: none;
+			}
+			#content .gallery li img{
+				position: absolute;
+				left: 0;
+				top: 0;
+				margin: 0;
+				padding: 15px 16px 16px 15px;
+				border: none;
+				background: url('../img/frame.png') no-repeat;
+				}
+			#content .gallery li a{
+				color: #676767;
+				}
+			#content .gallery li em{
+				font-style: normal;
+				}
+			#content .gallery li span{
+				position: absolute;
+				left: 25px;
+				bottom: 0;
+				width: 145px;
+				height: 20px;
+				background: url('../img/fade.png') no-repeat left top;
+				}
+	#content .gallery hr{
+		margin-left: 190px;
+		}
+#content #extra .gallery{
+	margin-left: -5px;
+	padding-left: 0;
+	}
+	#content #extra .gallery li{
+		height: auto;
+		}
+#content div.news{
+	margin: 2.5em -20px 0 -20px;
+	padding: 1em 20% 1.25em 20px;
+	background: #ece9d8;
+	}
+	#content .news h2{
+		margin-bottom: 1em;
+		font-size: 1.125em;
+		}
+		#content .news h2 a{
+			position: relative;
+			top: 0.05em;
+			left: 8px;
+			border: none;
+			background: none;
+			}
+			#content .news h2 img{
+				margin: 0;
+				border: none;
+				}
+	#content .news dl,
+	#content dl.news{
+		margin: 0;
+		font-size: 1em;
+		}
+		#content .news dt{
+			clear: left;
+			margin: 0 0 .375em 0px;
+			font-size: .875em;
+			}
+		#content .news dd{
+			margin: 0 0 1.25em 0;
+			}
+			#content .news dd p{
+				margin: 0 0 .25em 0;
+				font-size: .8125em;
+				}
+			#content .news .date{
+				font-size: .6875em;
+				color: #676767;
+				}
+		#content .news .img{
+			margin-left: 100px;
+			}
+		#content .news .img img{
+			float: left;
+			margin: 0 0 1em -100px;
+			border: none;
+			}
+	#content .news .archive{
+		margin-bottom: 0;
+		padding-left: 13px;
+		background: url('../img/ico/right.gif') no-repeat 0 0.4em;
+		}
+#news-page .date{
+	margin-top: 2.5em;
+	color: #676767;
+	}
+
+/* =Clearfix
+---------------------------------------------*/
+.clearfix:after{
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+	}
+.clearfix {
+	display: inline-block;
+	}
+/* Holly Hack Targets IE Win only \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End Holly Hack */

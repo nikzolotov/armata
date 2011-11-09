@@ -1,0 +1,57 @@
+﻿@auto[][newsNode]
+	^Templates.add[admin/news.xsl]
+	^use_module[article]
+	^use_module[tidy]
+	$type(0)
+#/auto
+
+@main[]
+	^switch[$form:act]{
+		^case[show;hide]{
+			^article:update[ $.id(^form:id.int(0)) $.published(^if($form:act eq "show"){1}{0}) ]
+			^throw[kernel.location;^request:uri.left(^request:uri.pos[?])?id=^form:id.int(0)]
+		}
+		^case[update]{
+			^if(def $form:title){
+				$params[$form:fields]
+				$params.type($type)
+				$params.date[^date::create($form:year;$form:month;$form:day;$form:hour;$form:minute)]
+				$params.date[^params.date.sql-string[]]
+				$params.lead[^tidy[$form:lead]]
+				$params.body[^tidy[$form:body]]
+				$id(^article:update[$params])
+			}
+			^article:generate_rss[
+				$.title[«Армата» — Новости]
+				$.img[/img/logo.png]
+				$.link[/about/news/]
+			]
+			^throw[kernel.location;^request:uri.left(^request:uri.pos[?])?id=$id]
+		}
+		^case[delete]{
+			^article:delete(^form:id.int(0))
+			^throw[kernel.location;^request:uri.left(^request:uri.pos[?])]
+		}
+		^case[edit]{
+			^if(^form:id.int(0)){
+				$Article[^article::article(^form:id.int(0))]
+				$Article.escape-xml(true)
+				^Article.xml-string[article-form]
+			}{
+				^article:xml-string[article-form]
+			}
+		}
+		^case[DEFAULT]{
+			^if(!^form:id.int(0)){
+				$total(^article:count[ $.type($type) ])
+				$offset[^set_pages[10;$total;^form:page.int(-1)]]
+				$offset.xml
+				$Article[^article::list[ $.type($type) $.limit(10) $.offset($offset.offset) ]]
+				^Article.xml-string[article-list]
+			}{
+				$Article[^article::article(^form:id.int(0))]
+				^Article.xml-string[]
+			}
+		}
+	}
+#/mai<html><body></body></html>n

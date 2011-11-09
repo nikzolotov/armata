@@ -1,0 +1,67 @@
+@main[]
+	^use_module[article]
+	
+	$XSL-Params.body-id[news-page]
+	^Templates.add[news.xsl]
+	
+	^if(^form:id.int(0)){
+		$ns[^article::article[^form:id.int(0);1]]
+		^ns.xml-string[]
+		$dt[^date::create[$ns.table.date]]
+		$XSL-Params.y[$dt.year]
+		$XSL-Params.m[$dt.month]
+		
+		$prev_news[^article::list[
+			$.next_id(^form:id.int(0))
+			$.type(0)
+			$.published(1)
+			$.limit(1)
+		]]
+		^prev_news.xml-string[previous]
+		
+		$next_news[^article::list[
+			$.prev_id(^form:id.int(0))
+			$.type(0)
+			$.published(1)
+			$.limit(1)
+			$.order[ASC]
+		]]
+		^next_news.xml-string[next]
+	}{
+		^if(def $form:y){
+			$XSL-Params.y[$form:y]
+			^if(def $form:m){
+				$XSL-Params.m[$form:m]
+				$before[^date::create(^form:y.int(1);^form:m.int(0))]
+				^before.roll[month](1)
+				$ns[^article::list[
+					$.type(0)
+					$.published(1)
+					$.date-from[^date::create(^form:y.int(1);^form:m.int(0))]
+					$.date-before[$before]
+				]]
+				^ns.xml-string[news]
+			}{
+				$ns[^article::list[
+					$.type(0)
+					$.published(1)
+					$.date-from[^date::create[^form:y.int(1)]]
+					$.date-before[^date::create[^eval(^form:y.int(1)+1)]]
+				]]
+				^ns.xml-string[news]
+			}
+		}{
+			$ns[^article::list[
+				$.type(0)
+				$.limit(10)
+				$.published(1)
+			]]
+			^ns.xml-string[news]
+		}
+	}
+	$cal[^article::calendar[
+		$.short(true)
+		$.published(1)
+	]]
+	^cal.xml-string[]
+#/main

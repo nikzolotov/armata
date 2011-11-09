@@ -1,0 +1,26 @@
+@main[][project;gallery;projects]
+	^use_module[project]
+	
+	^if(^form:id.int(0)){
+		$project[^project::project[
+			$.id($form:id)
+		]]
+		^project.xml-string[]
+		
+		^use_module[gallery]
+		$gallery[^gallery::load[
+			$.group[projects.$form:id]
+			$.lang[$XSL-Params.lang]
+			$.order[desc]
+		]]
+		^gallery.xml-string[gallery]
+	}{
+		^static-text[^page-id[]]
+		^Templates.add[static-text.xsl]
+	}
+	$projects[^project::list[
+		$.type(0)
+	]]
+	^projects.xml-string[projects]
+	
+	^Templates.add[projects.xsl]

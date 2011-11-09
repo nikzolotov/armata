@@ -1,0 +1,39 @@
+@main[][n]
+	$XSL-Params.index[true]
+	
+	^static-text[^page-id[]]
+
+	^use_module[article]
+	$n[^article::list[
+		$.limit(3)
+		$.published(1)
+		$.type(0)
+	]]
+	^n.xml-string[news]
+	
+	<promo>
+		<type id="promo-bars">
+			<title>Бары и рестораны</title>
+			<description>
+				<title>Бары и рестораны</title>
+				<text>Барные стойки из массива, столовые группы, столы из массива, винные шкафы и мебель для бара, фанерованная мебель и интерьер в шпоне, кованые изделия, входные группы</text>
+				<link href="/projects/">Проекты баров</link>
+			</description>
+		</type>
+		<type id="promo-private">
+			<title>Частные интерьеры</title>
+			<description>
+				<title>Частные интерьеры</title>
+				<text>Двери из массива/шпона, лестницы, мебель для hi-fi аппаратуры, мебель по индивидуальному проекту, кованые изделия для дома и ландшафта, ворота, козырьки, заборы</text>
+				<link href="/projects/">Частные проекты</link>
+			</description>
+		</type>
+		<type id="promo-business">
+			<title>Бизнес-интерьеры</title>
+			<description>
+				<title>Бизнес-интерьеры</title>
+				<text>Межкомнатные двери (шпон, массив, филенчатые), стойки-ресепшн, гардеробные, отделка стен шпоном, мебель по индивидуальному проекту</text>
+				<link href="/projects/">Бизнес проекты</link>
+			</description>
+		</type>
+	</promo>

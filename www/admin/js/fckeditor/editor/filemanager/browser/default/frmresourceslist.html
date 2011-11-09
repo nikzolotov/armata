@@ -1,0 +1,238 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!--
+ * FCKeditor - The text editor for Internet - http://www.fckeditor.net
+ * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ *
+ * == BEGIN LICENSE ==
+ *
+ * Licensed under the terms of any of the following licenses at your
+ * choice:
+ *
+ *  - GNU General Public License Version 2 or later (the "GPL")
+ *    http://www.gnu.org/licenses/gpl.html
+ *
+ *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ *    http://www.gnu.org/licenses/lgpl.html
+ *
+ *  - Mozilla Public License Version 1.1 or later (the "MPL")
+ *    http://www.mozilla.org/MPL/MPL-1.1.html
+ *
+ * == END LICENSE ==
+ *
+ * This page shows all resources available in a folder in the File Browser.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<link href="browser.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript">
+// preview block /////////
+
+	var imagePreview;
+//	var imagePreviewImage;
+	function prv_init()
+	{
+		imagePreview = document.getElementById('imagePreview');
+//		imagePreviewImage = document.getElementById('imagePreviewImage');
+	}
+	function showImage(x,y , url, width, height)
+	{
+//		imagePreviewImage.src= '/img/0.gif' ;
+//		imagePreviewImage.src = url;
+//		imagePreviewImage.width = width;
+//		imagePreviewImage.height = height;
+		imagePreview.style.left = x;
+		imagePreview.style.top = y;
+		imagePreview.style.display = 'block';
+		imagePreview.innerHTML='<a href="#" onClick="return hideImage();"><img id="imagePreviewImage" src="'+url+'" style="border: 1px solid black;" />';
+		return false;
+	}
+	function hideImage()
+	{
+		imagePreview.style.display='none';
+		return false;
+	}
+	var timerID = 0;
+	var  prv = 0;
+	var x=0;
+	var y=0;
+	function show(){
+		showImage(x,y,'/share/'+prv+'.jpg');
+	}
+	function over(e,id){
+		x = e.x ? (e.x + document.body.scrollLeft) : e.pageX;
+		y = e.y ? (e.y + document.body.scrollTop) : e.pageY;
+		prv=id;
+		timerID = setTimeout("show()", 1000);
+	}
+	function out(obj){
+	    clearTimeout(timerID);
+	    prv=0;
+	}
+//////////////////////////
+
+var oListManager = new Object() ;
+
+oListManager.Clear = function()
+{
+	document.body.innerHTML = '' ;
+}
+
+function ProtectPath(path)
+{
+	path = path.replace( /\\/g, '\\\\') ;
+	path = path.replace( /'/g, '\\\'') ;
+	return path ;
+}
+
+var _i=0;
+
+oListManager.GetFolderRowHtml = function( folderName, folderPath, folderId )
+{
+	// Build the link to view the folder.
+	var sLink = '<a href="#" onclick="OpenFolder(\'' + ProtectPath( folderPath ) + '\');return false;">' ;
+	_i=!_i;
+	return '<tr style="background:'+(_i?'#e0e0e0':'#fff')+'">' +
+			'<td width="16">' +
+				sLink +
+				'<img alt="" src="images/Folder32.gif" width="32" height="32" border="0"><\/a>' +
+			'<\/td><td nowrap colspan="2">&nbsp;' +
+				sLink +
+				folderName +
+				'<\/a>' +
+// modified by prog [19:54 12.01.2007]
+			'</td><td width="24">'+
+				'<a href="#" onclick="return confirm(\'Вы уверены что хотите удалить '+folderName+' ('+folderId +')?\') && Del(\'' + folderId + '\') && false">' +
+					'<img src="images/24-em-cross.png"  width="24" height="24" border="0" \/>' +
+				'<\/a>' +
+		'<\/td>'+
+		'<\/tr>' ;
+}
+
+oListManager.GetFileRowHtml = function( fileName, fileUrl, fileSize, fileId, filePreview )
+{
+	// Build the link to view the folder.
+	var sLink = '<a href="#"' +
+	((filePreview==null)?'':' onmouseover="over(event,'+filePreview+')" onmouseout="out()" ')+
+	'onclick="OpenFile(\'' + ProtectPath( fileUrl ) + '\');return false;">' ;
+
+	// Get the file icon.
+	var sIcon = oIcons.GetIcon( fileName ) ;
+
+	_i=!_i;
+	return '<tr style="background:'+(_i?'#e0e0e0':'#fff')+'">' +
+			'<td width="16">' +
+				sLink +
+				'<img alt="" src="images/icons/32/' + sIcon + '.gif" width="32" height="32" border="0"><\/a>' +
+			'<\/td><td>&nbsp;' +
+				sLink +
+				fileName +
+				'<\/a>' +
+			'<\/td><td align="right" nowrap>&nbsp;' +
+				fileSize +
+				' KB' +
+// modified by prog [22:44 01.01.2007]
+			'</td><td width="24">'+
+				'<a href="#" onclick="return confirm(\'Вы уверены что хотите удалить '+fileName+'?\') && Del(\'' + fileId + '\') && false">' +
+					'<img src="images/24-em-cross.png"  width="24" height="24" border="0" />' +
+				'</a>' +
+		'</td></tr>' ;
+}
+
+function OpenFolder( folderPath )
+{
+	// Load the resources list for this folder.
+	window.parent.frames['frmFolders'].LoadFolders( folderPath ) ;
+}
+
+function OpenFile( fileUrl )
+{
+	window.top.opener.SetUrl( encodeURI( fileUrl ) ) ;
+	window.top.close() ;
+	window.top.opener.focus() ;
+}
+function Del(shareId)
+{
+	oListManager.Clear() ;
+	oConnector.SendCommand( 'GetFoldersAndFiles', 'del='+shareId, GetFoldersAndFilesCallBack ) ;
+}
+
+function LoadResources( resourceType, folderPath )
+{
+	oListManager.Clear() ;
+	oConnector.ResourceType = resourceType ;
+	oConnector.CurrentFolder = folderPath ;
+	oConnector.SendCommand( 'GetFoldersAndFiles', null, GetFoldersAndFilesCallBack ) ;
+}
+
+function Refresh()
+{
+	LoadResources( oConnector.ResourceType, oConnector.CurrentFolder ) ;
+}
+
+function GetFoldersAndFilesCallBack( fckXml )
+{
+	if ( oConnector.CheckError( fckXml ) != 0 )
+		return ;
+
+	// Get the current folder path.
+	var oFolderNode = fckXml.SelectSingleNode( 'Connector/CurrentFolder' ) ;
+	if ( oFolderNode == null )
+	{
+		alert( 'The server didn\'t reply with a proper XML data. Please check your configuration.' ) ;
+		return ;
+	}
+	var sCurrentFolderPath	= oFolderNode.attributes.getNamedItem('path').value ;
+	var sCurrentFolderUrl	= oFolderNode.attributes.getNamedItem('url').value ;
+
+//	var dTimer = new Date() ;
+
+	var oHtml = new StringBuilder( '<table id="tableFiles" cellspacing="1" cellpadding="0" width="100%" border="0">' ) ;
+
+	// Add the Folders.
+	var oNodes ;
+	oNodes = fckXml.SelectNodes( 'Connector/Folders/Folder' ) ;
+	for ( var i = 0 ; i < oNodes.length ; i++ )
+	{
+		var sFolderName = oNodes[i].attributes.getNamedItem('name').value ;
+		var sFolderId = oNodes[i].attributes.getNamedItem('id').value ;
+		oHtml.Append( oListManager.GetFolderRowHtml( sFolderName, sCurrentFolderPath + sFolderName + "/" , sFolderId) ) ;
+	}
+
+	// Add the Files.
+	oNodes = fckXml.SelectNodes( 'Connector/Files/File' ) ;
+	for ( var j = 0 ; j < oNodes.length ; j++ )
+	{
+		var oNode = oNodes[j] ;
+		var sFileName = oNode.attributes.getNamedItem('name').value ;
+		var sFileSize = oNode.attributes.getNamedItem('size').value ;
+		var sFileId = oNode.attributes.getNamedItem('id').value ;
+		var sFilePreview = oNode.attributes.getNamedItem('preview')?oNode.attributes.getNamedItem('preview').value:null ;
+
+		// Get the optional "url" attribute. If not available, build the url.
+		var oFileUrlAtt = oNodes[j].attributes.getNamedItem('url') ;
+		var sFileUrl = oFileUrlAtt != null ? oFileUrlAtt.value : sCurrentFolderUrl + sFileName ;
+
+		oHtml.Append( oListManager.GetFileRowHtml( sFileName, sFileUrl, sFileSize, sFileId, sFilePreview ) ) ;
+	}
+
+	oHtml.Append( '<\/table>' ) ;
+	oHtml.Append('<div id="imagePreview" onmouseout="hideImage()" style="display: none; position: absolute; padding: 10px; background: #ffffe0; border: 1px solid gray;"><a href="#" onClick="return hideImage();"><img id="imagePreviewImage" style="border: 1px solid black;" /></a></div>');
+
+	document.body.innerHTML = oHtml.ToString() ;
+	
+	prv_init();
+
+//	window.top.document.title = 'Finished processing in ' + ( ( ( new Date() ) - dTimer ) / 1000 ) + ' seconds' ;
+
+}
+
+window.onload = function()
+{
+	window.top.IsLoadedResourcesList = true ;
+}
+	</script>
+</head>
+<body class="FileArea">
+</body>
+</html>

@@ -1,0 +1,8 @@
+div.menu-item{
+	margin-left: -1px;
+}
+form.section {
+	width: 100%;
+}
+form.section p:first-child { background: 0;}
+div.photo div.nav a:hover{ color: white; }

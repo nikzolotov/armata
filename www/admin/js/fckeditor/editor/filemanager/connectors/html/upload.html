@@ -1,0 +1,79 @@
+@USE
+kernel.p
+#/USE
+
+@SendResults[r]
+#	errorNumber	fileUrl	fileName	customMsg
+$result[
+<script type="text/javascript">
+	window.parent.OnUploadCompleted($r.errorNumber, "^taint[js][$r.fileUrl]", "^taint[js][$r.fileName]", "^taint[js][$r.customMsg]")^;
+	</script>]
+^throw[exit;$result]
+#/SendResults
+
+
+@main[]
+^try{
+	^use_module[share]
+# Check if the file has been correctly uploaded.
+	^if(!($form:NewFile is file)){
+		^SendResults[
+			$.errorNumber[202]
+		]
+	}
+
+
+	$errno[203]
+	^if($form:NewFile is file){
+		$errno[0]
+		$l[^share::list[]]
+		$i(0)
+		^if(def $l.table && ^l.table.locate($l.table.name eq ".fckeditor")){
+			$__share_pid($l.table.share_id)
+		}{
+			$__share_pid(^share:create-dir[.fckeditor])
+		}
+		$l[^share::list[$__share_pid]]
+		$fn[$form:NewFile.name]
+		^if(def $l.table){
+			^while(^l.table.locate($l.table.name eq $fn)){
+				$i($i+1)
+				$fn[^file:justname[$form:NewFile.name]_${i}.^file:justext[$form:NewFile.name]]
+				$errno[201]
+			}
+		}
+		^try{
+			$id[^share:add[$form:NewFile;$__share_pid;$fn]]
+			$types[^table::create{type
+bmp
+jpg
+gif
+png
+}]
+			^if(^types.locate($types.type eq ^file:justext[$fn])){
+				^share:create_preview[$id]		
+			}	
+		}{
+#			$exception.handled(true)
+			$errno[203]
+		}
+	}
+	^SendResults[
+			$.errorNumber[$errno]
+			$.fileUrl[${MAIN:SHARE_DIR}/${id}^if(def ^file:justext[$fn]){.^file:justext[$fn]}]
+			$.fileName[^file:justname[$fn].^file:justext[$fn]]
+	]
+
+}{
+	^if($exception.type eq exit){
+		$exception.handled(true)
+		^taint[as-is][$exception.source]
+	}
+}
+#/main
+
+@postprocess[t]
+$t
+#/posprocess
+
+

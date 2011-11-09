@@ -1,0 +1,37 @@
+﻿@main[]
+	^use_module[gallery]
+	^Templates.add[admin/gallery.xsl]
+
+	^switch[$form:act]{
+		^case[DEFAULT]{
+			^if(def $form:group){
+				$g[^gallery::load[
+					$.group[$form:group]
+					$.lang[$XSL-Params.default-lang]
+					$.order[desc]
+				]]
+				^g.xml-string[gallery;$.group[$form:group]]
+			}{
+				<html><p>Для каждого <a href="text/">текстового раздела</a> фотографии указываются отдельно</p></html>
+			}
+		}
+		^case[form]{
+			$g[^gallery::load[
+				$.id[$form:id]
+				$.lang[$XSL-Params.default-lang]
+			]]
+			^g.xml-string[form;$.group[$form:group]]
+		}
+		^case[drop]{
+			^gallery:delete[$form:id]
+			^throw[kernel.location;?group=$form:group]
+		}
+		^case[update]{
+			^gallery:update[$form:fields]
+			^throw[kernel.location;?group=$form:group]
+		}
+		^case[swap]{
+			^gallery:swap[$form:swap]
+			^throw[kernel.location;?group=$form:group]
+		}
+	}

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<navigation>
+	<item key="about" name="О компании" index-context-name="Профиль деятельности">
+		<item key="customers" name="Наши заказчики"/>
+		<!--<item key="objects" name="Объекты с нашим участием"/>-->
+		<item key="news" name="Новости" dir="true" hide="true"/>
+		<item key="vacancy" name="Вакансии"/>
+		<item key="contacts" name="Контакты" highlight="true"/>
+	</item>
+	<item key="catalog" name="Продукция">
+		<item key="interior-details" name="Элементы интерьера">
+			<item key="wall-panels" name="Стеновые и потолочные панели"/>
+			<item key="bars" name="Барные стойки, ресепшн"/>
+			<item key="frontages" name="Филенчатые панели"/>
+			<item key="ceiling-beams" name="Балки потолочные декоративные"/>
+			<item key="windowsill" name="Подоконники и откосы" context-gallery="true"/>
+			<item key="radiator-shields" name="Радиаторные экраны"/>
+			<item key="table-tops" name="Столешницы из массива и МДФ"/>
+			<item key="other" name="Разное"/>
+		</item>
+		<item key="furniture" name="Мебель">
+			<item key="beds" name="Кровати (натуральный шпон)"/>
+			<item key="libraries" name="Библиотеки"/>
+			<item key="sliding-doors" name="Шкафы купе"/>
+			<item key="cabinet-furniture" name="Корпусная мебель"/>
+			<item key="tables" name="Мебель и столы из массива"/>
+			<item key="other" name="Мебель и стойки дпя HI-FI аппаратуры"/>
+		</item>
+		<item key="stairs" name="Лестницы">
+			<item href="/catalog/stairs/" name="О направлении" highlight="true"/>
+			<item key="procedure" name="Порядок заказа лестниц" highlight="true"/>
+			<item key="glossary" name="Словарь терминов" highlight="true"/>
+			<item key="useful" name="Полезная информация" highlight="true"/>
+			<item key="wooden" name="Деревянные лестницы"/>
+			<item key="forged" name="Кованые лестницы"/>
+			<item key="stainless-steel" name="Лестницы из нержавеющей стали"/>
+		</item>
+		<item key="room-doors" name="Двери межкомнатные">
+			<item key="advantage" name="Преимущества наших дверей" highlight="true"/>
+			<item key="order" name="Заказ дверей. Важные моменты" highlight="true"/>
+			<item key="classification" name="Классификация дверей" highlight="true"/>
+			<item key="glossary" name="Термины и полезная информация" highlight="true"/>
+			<item key="interlined" name="Двери с натуральным шпоном"/>
+			<item key="panelled" name="Филенчатые двери"/>
+			<item key="sliding-full" name="Раздвижные двери из массива"/>
+			<item key="archs" name="Арки и порталы"/>
+			<item key="with-forged-elements" name="Двери с коваными элементами"/>
+			<item key="doors-molding" name="Дверные накладки"/>
+		</item>
+	<!--	<item key="furniture-details" name="Мебельные детали (фанерование)">
+			<item key="interlined" name="Панели с натуральным шпоном"/>
+			<item key="other" name="Разное"/>
+		</item> -->
+		<item key="forged" name="Кованые изделия">
+			<item href="/catalog/forged/" name="О направлении" highlight="true"/>
+			<item key="gates" name="Ворота кованые"/>
+			<item key="wicket-gates" name="Двери и калитки кованые"/>
+			<item key="fences" name="Заборы и наверши кованые"/>
+			<item key="furniture" name="Мебель кованая"/>
+			<item key="canopies" name="Козырьки и колпаки кованые"/>
+			<item key="landscape" name="Элементы ландшафта кованые"/>
+			<item key="lamps" name="Светильники и детали интерьера кованые"/>
+			<item key="balconies-and-gratings" name="Балконы и решетки кованые"/>
+			<item key="stairs-barriers" name="Лестничные ограждения кованые"/>
+		</item>
+		<item key="metal" name="Металлоконструкции">
+			<item key="canopies" name="Навесы сборные"/>
+			<item key="garages" name="Гаражи сборные"/>
+			<item key="welded" name="Сварные конструкции"/>
+		</item>
+		<item key="other" name="Изделия на заказ" dir="true"/>
+	</item>
+	<item key="production" name="Производство" index-context-name="Производственные возможности">
+		<item key="joiners-shop" name="Столярный цех"/>
+		<item key="press-shop" name="Прессовой цех"/>
+		<item key="paint-shop" name="Цех малярных работ"/>
+		<item key="forge" name="Цех кованных изделий (кузня)"/>
+		<item key="door-shop" name="Цех по производству дверей"/>
+		<item key="furniture-shop" name="Цех корпусной мебели"/>
+		<item key="metal-shop" name="Цех металлообработки"/>
+	</item>
+	<item key="veneering" name="Фанеровка" index-context-name="Услуги по фанеровке (шпонированию)">
+		<item key="where-to-use" name="Области применения"/>
+		<item key="tech" name="Технологии фанеровки"/>
+		<item key="types" name="Виды шпона"/>
+		<item key="shields" name="Мебельные щиты"/>
+		<item key="furniture-details" name="Мебельные детали"/>
+		<item key="panels" name="Стеновые и потолочные панели"/>
+		<item key="services" name="Услуги по отделке шпоном"/>
+	</item>
+	<item key="projects" name="Проекты">
+		<item key="restaurants" name="Бары, рестораны, клубы" dir="true" type="1" hide="true"/>
+		<item key="business" name="Бизнес-интерьеры" dir="true" type="2" hide="true"/>
+		<item key="private" name="Частные интерьеры" dir="true" type="3" hide="true"/>
+	</item>
+	<item key="collaboration" name="Сотрудничество">
+		<item key="architects" name="Архитекторам и дизайнерам"/>
+		<item key="producers" name="Производителям"/>
+		<item key="for-rent" name="Арендаторам"/>
+	</item>
+	<group>
+		<item key="map" name="Карта сайта" dir="true"/>
+	</group>
+</navigation>
