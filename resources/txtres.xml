@@ -3,10 +3,6 @@
 	<resources lang="ru">
 		<language>Русский</language>
 		<title>Армата</title>
-		<phone>
-			<code>+7 (495)</code>
-			<number>702-90-23</number>
-		</phone>
 		<address>
 			<country-name>Россия</country-name>
 			<region>Московская обл.</region>

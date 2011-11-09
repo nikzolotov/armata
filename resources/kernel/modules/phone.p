@@ -28,6 +28,7 @@ phone
 				`phone_id` AS `id`,
 				`title`,
 				`number`,
+				`desc`,
 				`published`
 			FROM
 				`${TABLES.PHONE}`
@@ -114,6 +115,7 @@ phone
 				<$SETTINGS.TAG.ITEM id="$__list.id"^if($__list.published){ published="true"}>
 					^if(def $__list.title){<title>^to_xml[$__list.title]</title>}
 					^if(def $__list.number){<number>^to_xml[$__list.number]</number>}
+					^if(def $__list.desc){<desc>^to_xml[$__list.desc]</desc>}
 				</$SETTINGS.TAG.ITEM>
 			}
 		]

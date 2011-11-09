@@ -117,32 +117,63 @@
 		#header .menu p a{
 			color: #37548e;
 			}
-#header .contacts{
+.b-contacts {
 	position: absolute;
-	top: 40px;
-	left: 78%;
-	width: 22%;
+	top: 38px;
+	left: 71%;
+	width: 29%;
+	line-height: 16px;
 	}
-	#header .contacts p{
-		font-size: .875em;
-		white-space: nowrap;
+	.b-contacts .title {
+		margin-bottom: 3px;
+		font-size: 15px;
+		font-weight: normal;
 		}
-	#header .contacts .phone{
-		position: relative;
-		left: -20px;
-		padding: 0 0 .25em 20px;
-		font: normal 1.25em Georgia, "Times New Roman", Times, serif; 
-		background: url('../img/ico/phone.gif') no-repeat 0 .3em;
+	.b-contacts .tabs-controls {
+		margin: 0 0 5px -8px;
+		padding: 0 !important;
+		overflow: hidden;
 		}
-		#header .phone em{
-			margin: 0;
+		.b-contacts .tabs-controls .item {
+			margin-left: 8px;
+			text-transform: lowercase !important;
+			}
+			.b-contacts .tabs-controls .link {
+				margin: 0 !important;
+				padding: 0 !important;
+				border-bottom: 1px dotted !important;
+				background: none !important;
+				font-size: 12px !important;
+				line-height: 14px !important;
+				font-weight: normal !important;
+				color: #333 !important;
+				}
+			.b-contacts .tabs-controls .item .selected {
+				padding: 0px 4px 2px 4px !important;
+				background: #CCD7E1 !important;
+				border: none !important;
+				}
+	.b-contacts .tab {
+		margin-bottom: 8px;
+		}
+		.b-contacts .phone {
+			position: relative;
+			left: -20px;
+			padding: 0 0 2px 20px;
+			font: normal 23px/25px Georgia, "Times New Roman", Times, serif; 
+			background: url('../img/ico/phone.gif') no-repeat 0 .3em;
 			color: #00184a;
 			}
-	#header .contacts .other{
-		padding-bottom: 1em;
-		font-size: .75em;
+		.b-contacts .desc {
+			font-size: 11px;
+			line-height: 12px;
+			color: #777;
+			}
+	.b-contacts .more {
+		padding-bottom: 5px;
+		font-size: 12px;
 		}
-		#header .contacts .other a{
+		.b-contacts .more .link {
 			color: #37548e;
 			}
 

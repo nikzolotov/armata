@@ -154,23 +154,9 @@
 				</xsl:for-each>
 			</p>
 		</div>
-		<div class="contacts">
-			<p>Есть проект?</p>
-			<p class="phone">
-				<em>
-					<xsl:value-of select="$txtres/phone/code"/>
-					<xsl:text> </xsl:text>
-					<xsl:value-of select="$txtres/phone/number"/>
-				</em>
-			</p>
-			<p class="other">
-				<a>
-					<xsl:attribute name="href">
-						<xsl:apply-templates mode="navigation-item-path" select="navigation//item[@key = 'contacts']"/>
-					</xsl:attribute>
-					<xsl:text>другие контакты</xsl:text>
-				</a>
-			</p>
+		<div class="b-contacts">
+			<h2 class="title">Есть проект?</h2>
+			<xsl:apply-templates select="phones" mode="contacts"/>
 		</div>
 	</xsl:template>
 
@@ -201,6 +187,45 @@
 				</li>
 			</xsl:for-each>
 		</ul>
+	</xsl:template>
+	
+	<xsl:template match="phones" mode="contacts">
+		<xsl:if test="phone">
+			<ul class="tabs-controls">
+				<xsl:apply-templates select="phone" mode="link"/>
+			</ul>
+			<xsl:apply-templates select="phone" mode="contacts"/>
+		</xsl:if>
+		<div class="more">
+			<a class="link">
+				<xsl:attribute name="href">
+					<xsl:apply-templates mode="navigation-item-path" select="/page/navigation//item[@key = 'contacts']"/>
+				</xsl:attribute>
+				<xsl:text>другие контакты</xsl:text>
+			</a>
+		</div>
+	</xsl:template>
+	
+	<xsl:template match="phone" mode="link">
+		<li class="item">
+			<a class="link" href="#phone-{@id}">
+				<xsl:value-of select="title/text()"/>
+			</a>
+		</li>
+	</xsl:template>
+	
+	<xsl:template match="phone" mode="contacts">
+		<div class="tab" id="phone-{@id}">
+			<xsl:if test="position() != 1">
+				<xsl:attribute name="style">display: none</xsl:attribute>
+			</xsl:if>
+			<h3 class="phone">
+				<xsl:value-of select="number/text()"/>
+			</h3>
+			<div class="desc">
+				<xsl:value-of select="desc/text()"/>
+			</div>
+		</div>
 	</xsl:template>
 	
 	<xsl:template name="promo">

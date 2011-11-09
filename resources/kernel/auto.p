@@ -12,8 +12,8 @@
 	$RESOURCES_DIR[/../resources]					#Каталог с ресурсами
 	$TEMPLATES_DIR[/../templates]					#Каталог с шаблонами
 	$VAR_DIR[/../var]								#Каталог с временными файлами
-	$TIDY_DIR[${RESOURCES_DIR}/tidy]
-	$NCONVERT_DIR[${RESOURCES_DIR}/xnview]
+	$TIDY_DIR[/../../cgi-glob/tidy]
+	$NCONVERT_DIR[/../../cgi-glob/xnview]
 	$SHARE_DIR[/share]								#Каталог где размещаются файлы модуля share
 	
 #	Кэш

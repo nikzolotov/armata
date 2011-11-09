@@ -18,8 +18,10 @@
 	}
 	
 	$(function(){
+		//	Телефоны	
+		$('.b-contacts .tabs-controls').idTabs();
+		
 		$('#promo .specialization').idTabs();
-		//slideShow();
 		$('#promo .illustration').slideShow(IMAGES,{
 			linksSelector: '#promo .specialization a',
 			savePositions: true

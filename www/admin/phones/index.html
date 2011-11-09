@@ -1,16 +1,22 @@
 ﻿@main[]
 	^use_module[phone]
+	^use_module[tidy]
 
 	^switch[$form:act]{
 		^case[update]{
 			^if(def $form:title){
 				$params[$form:fields]
+				$params.desc[^tidy[$form:desc]]
 				$id(^phone:update[$params])
 			}
+			^cache[$CACHE_DIR/phones](0){}
+			
 			^throw[kernel.location;^request:uri.left(^request:uri.pos[?])?id=$id]
 		}
 		^case[delete]{
 			^phone:delete(^form:id.int(0))
+			^cache[$CACHE_DIR/phones](0){}
+			
 			^throw[kernel.location;^request:uri.left(^request:uri.pos[?])]
 		}
 		^case[edit]{

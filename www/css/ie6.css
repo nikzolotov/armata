@@ -1,6 +1,9 @@
 #container{
 	width: expression((documentElement.clientWidth||document.body.clientWidth)<990?'990px':'auto');
 	}
+.b-contacts .tabs-controls .item {
+	display: inline;
+	}
 #content .gallery li img{
 	background-image: none;
 	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/frame.png', sizingMethod='crop');
@@ -15,6 +18,7 @@
 	padding: 0 30px 0 30px;
 	}
 #header,
-#header .menu{
+#header .menu,
+.b-contacts .tabs-controls {
 	zoom: 1;
 	}
