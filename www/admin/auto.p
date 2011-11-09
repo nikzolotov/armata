@@ -7,9 +7,8 @@
 	$response:Pragma[no-cache]
 #	$response:Last-modified[]
 
-
-#/auto
-
+@preprocess[body]
+	$result[$body]
 
 # выставляет переменные для страничного скроллера, возвращает offset
 @set_pages[perpage;total;page]

@@ -12,6 +12,18 @@ kernel.p
 	
 	^Templates.add[page.xsl]
 
+@preprocess[body][phones;phonesXML]
+	^use_module[phone]
+
+	$phonesXML[
+		^cache[$CACHE_DIR/phones]($CACHE_TTL*$USE_CACHE){
+			$phones[^phone::list[]]
+			^phones.xml-string[phones]
+		}
+	]
+	
+	$result[${body}${phonesXML}]
+
 @site_postprocess[result]
 	^if($DEBUG && def $form:xml){ ^Templates.clear[] }
 	

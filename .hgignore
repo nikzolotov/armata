@@ -3,3 +3,4 @@ design/*
 logs/*
 parser3.conf
 www/img/content/*
+cache/*

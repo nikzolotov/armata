@@ -27,11 +27,15 @@ templates.p
 	}
 #/auto
 
+
+@preprocess[body]
+	$result[$body]
+
 @postprocess[body][xml-body;node]
 	^if($body is string){
 #	Если параметр является строкой, то обрабатываем её...
 		^try{
-			$xml-body[^xdoc::create{<?xml version="1.0" encoding="$CHARSET"?><page>$body</page>}]
+			$xml-body[^xdoc::create{<?xml version="1.0" encoding="$CHARSET"?><page>^preprocess[$body]</page>}]
 		}{
 			^body.save[/../logs/body.xml]
 		}

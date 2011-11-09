@@ -16,6 +16,11 @@
 	$NCONVERT_DIR[${RESOURCES_DIR}/xnview]
 	$SHARE_DIR[/share]								#Каталог где размещаются файлы модуля share
 	
+#	Кэш
+	$CACHE_DIR[/../cache]				# Каталог кэша
+	$CACHE_TTL(86400)					# Время жизни кэша по умолчанию 1 день
+	$USE_CACHE(1)						# Включение кэша
+	
 #	$404_ERROR_DOCUMENT[/404.html]
 
 	$MOD_AUTH_USE_GROUPS(false)
@@ -26,7 +31,7 @@
 		$.USE_FOREIGN_KEYS(1)						#MySQL 4.1
 	]
 
-	#Файл навигации
+#	Файл навигации
 	^if(in "$ADMIN_DIR"){
 		$NAVIGATION_FILE[$RESOURCES_DIR/admin-navigation.xml]	#АРМ администратора
 	}{
