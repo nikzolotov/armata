@@ -1,0 +1,52 @@
+﻿@main[][context;contexts;params;contextCopy]
+	^use_module[context]
+	
+	^if(def $form:id){
+		^switch[$form:action]{
+			^case[edit]{
+				$context[^context::context[$form:id]]
+				
+				^if(def $context.table){
+					$context.escapeXml(true)
+					^context.xmlString[context-form]
+				}{
+					<context-form>
+						$clearContext
+					</context-form>
+				}
+				
+				$contexts[^context::list[]]
+				^contexts.xmlString[contexts]
+			}
+			^case[update]{
+				^use_module[tidy]
+				
+				$params[$form:fields]
+				$params.text[^tidy[$params.text]]
+				
+				^context:update[$params]
+				^throw[kernel.location;^request:uri.left(^request:uri.pos[?])?id=$form:id]
+			}
+			^case[DEFAULT]{
+				$context[^context::context[$form:id]]
+				
+				^if(def $context.table){
+					^context.xmlString[]
+				}{
+					$clearContext
+				}
+				
+				^if(def $context.table.copy){
+					$contextCopy[^context::context[$context.table.copy]]
+					^contextCopy.xmlString[context-copy]
+				}
+			}
+		}
+	}
+	
+	^Templates.add[admin/context.xsl]
+
+@GET_clearContext[]
+	<context>
+		<id>$form:id</id>
+	</context>

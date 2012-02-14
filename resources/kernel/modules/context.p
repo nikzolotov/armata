@@ -9,10 +9,10 @@ context
 	$escapeXml(false)
 
 
-@create[_id]
+@context[_id]
 	^if(def $_id){
 		^db{
-			$__data[^table::sql{
+			$__context[^table::sql{
 				SELECT
 					`page_id` AS `id`,
 					`copy_page_id` AS `copy`,
@@ -23,11 +23,24 @@ context
 				WHERE
 					`page_id` = '$_id'
 			}]
-			
-			^if(def $__data.copy){
-				^create[$__data.copy]
-			}
 		}
+	}
+
+@list[]
+		^db{
+			$__list[^table::sql{
+				SELECT
+					`page_id` AS `id`,
+					`copy_page_id` AS `copy`,
+					`published`
+				FROM
+					`${TABLES.CONTEXT}`
+			}]
+		}
+
+@GET_table[]
+	^if($__context is table){
+		$result[$__context]
 	}
 
 
@@ -35,8 +48,9 @@ context
 	^if(def $_params && def $_params.id){
 		^db{
 			$sql[
+				`copy_page_id` = ^if(def $_params.copy_page_id){ '$_params.copy_page_id' }{ NULL },
 				`text` = ^if(def $_params.text){ '$_params.text' }{ NULL },
-				`published` = ^if(def $_params.published){ ^_params.published.int(0) }{ 1 }
+				`published` = ^_params.published.int(0)
 			]
 			^void:sql{
 				INSERT INTO `${TABLES.CONTEXT}` SET
@@ -59,13 +73,27 @@ context
 @xmlString[_node;_attr][k;v]
 	$result[]
 	
-	^if(def $__data){
+	^if(def $__context){
 		$result[
-			<id>$__data.id</id>
-			^if(def $__data.text){<text>^toXml[$__data.text]</text>}
-			<published>^__data.published.int(0)</published>
+			<context published="^__context.published.int(0)">
+				<id>$__context.id</id>
+				<copy>$__context.copy</copy>
+				^if(def $__context.text){<text>^toXml[$__context.text]</text>}
+			</context>
 		]
 	}
+	
+	^if(def $__list){
+		$result[
+			^__list.menu{
+				<context published="^__list.published.int(0)">
+					<id>$__list.id</id>
+					<copy>$__list.copy</copy>
+				</context>
+			}
+		]
+	}
+	
 	^if(def $_node){$result[<${_node} ^if(def $_attr && $_attr is hash){^_attr.foreach[k;v]{ $k="^taint[xml][$v]"}}>$result</${_node}>]}
 
 @toXml[text]

@@ -41,7 +41,8 @@
 					<xsl:apply-templates select="text" mode="text" />
 				</div>
 				<p>
-					<a href="/admin/gallery/?group={id}">Редактировать связанные фотографии</a>
+					<a href="/admin/gallery/?group={id}">Редактировать связанные фотографии</a> <br/>
+					<a href="/admin/context/?id={id}">Редактировать содержимое левой колонки</a>
 				</p>
 			</td>
 		</tr>

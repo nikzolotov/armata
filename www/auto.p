@@ -16,6 +16,7 @@ kernel.p
 	^Templates.add[page.xsl]
 
 @preprocess[body][phones;phonesXML;context]
+#	Контактные телефоны
 	^use_module[phone]
 
 	$phonesXML[
@@ -25,10 +26,15 @@ kernel.p
 		}
 	]
 	
+#	Содержимое левой колонки
 	^use_module[context]
-	$context[^context::create[$PAGE_ID]]
+	$context[^context::context[$PAGE_ID]]
 	
-	$result[${body}${phonesXML}^context.xmlString[context]]
+	^if(def $context.table.copy){
+		$context[^context::context[$context.table.copy]]
+	}
+	
+	$result[${body}${phonesXML}^context.xmlString[]]
 
 @site_postprocess[result]
 	^if($DEBUG && def $form:xml){ ^Templates.clear[] }
