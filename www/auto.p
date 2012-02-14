@@ -9,10 +9,13 @@ kernel.p
 	^if($[XSL-Params].[default-lang] ne $[XSL-Params].lang){
 		^Navigation.documentElement.setAttribute[base;/$XSL-Params.lang]
 	}
+
+#	Id страницы
+	$PAGE_ID[^page-id[]]
 	
 	^Templates.add[page.xsl]
 
-@preprocess[body][phones;phonesXML]
+@preprocess[body][phones;phonesXML;context]
 	^use_module[phone]
 
 	$phonesXML[
@@ -22,7 +25,10 @@ kernel.p
 		}
 	]
 	
-	$result[${body}${phonesXML}]
+	^use_module[context]
+	$context[^context::create[$PAGE_ID]]
+	
+	$result[${body}${phonesXML}^context.xmlString[context]]
 
 @site_postprocess[result]
 	^if($DEBUG && def $form:xml){ ^Templates.clear[] }

@@ -310,8 +310,8 @@
 	
 	<xsl:template name="extra">
 		<xsl:choose>
-			<xsl:when test="context">
-				<xsl:apply-templates select="context" mode="text"/>
+			<xsl:when test="context/text">
+				<xsl:apply-templates select="context/text" mode="text"/>
 			</xsl:when>
 			<xsl:when test="$index">
 				<xsl:if test="navigation//item[@index-context-name]">
