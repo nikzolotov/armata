@@ -88,7 +88,7 @@
 		<item key="panels" name="Стеновые и потолочные панели"/>
 		<item key="services" name="Услуги по отделке шпоном"/>
 	</item>
-	<item key="projects" name="Проекты">
+	<item key="projects" name="Проекты" module="project">
 		<item key="restaurants" name="Бары, рестораны, клубы" dir="true" type="1" hide="true"/>
 		<item key="business" name="Бизнес-интерьеры" dir="true" type="2" hide="true"/>
 		<item key="private" name="Частные интерьеры" dir="true" type="3" hide="true"/>

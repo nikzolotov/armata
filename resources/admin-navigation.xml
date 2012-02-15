@@ -4,7 +4,7 @@
 		<item key="index" name="Главная страница" dir="true"/>
 	</item>
 	<item key="news" name="Новости" dir="true"/>
-	<item key="projects" name="Проекты" dir="true">
+	<item key="projects" name="Проекты" dir="true" module="project">
 		<item key="restaurants" name="Бары, рестораны, клубы" dir="true" type="1"/>
 		<item key="business" name="Бизнес-интерьеры" dir="true" type="2"/>
 		<item key="private" name="Частные интерьеры" dir="true" type="3"/>

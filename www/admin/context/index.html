@@ -1,4 +1,4 @@
-﻿@main[][context;contexts;params;contextCopy]
+﻿@main[][context;contexts;projects;params;contextCopy]
 	^use_module[context]
 	
 	^if(def $form:id){
@@ -17,6 +17,10 @@
 				
 				$contexts[^context::list[]]
 				^contexts.xmlString[contexts]
+				
+				^use_module[project]
+				$projects[^project::list[]]
+				^projects.xml-string[projects]
 			}
 			^case[update]{
 				^use_module[tidy]

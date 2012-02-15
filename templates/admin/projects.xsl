@@ -95,7 +95,8 @@
 					<xsl:apply-templates select="see-also" mode="text"/>
 				</xsl:if>
 				<p>
-					<a href="/admin/gallery/?group=projects.{@id}">Редактировать связанные фотографии</a>
+					<a href="/admin/gallery/?group=projects.{@id}">Редактировать связанные фотографии</a> <br/>
+					<a href="/admin/context/?id={$lang}.projects.{/page/navigation/item[@module = 'project']/item[@in]/@key}.{@id}">Редактировать содержимое левой колонки</a>
 				</p>
 			</td>
 		</tr>
