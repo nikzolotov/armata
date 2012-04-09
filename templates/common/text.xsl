@@ -8,7 +8,7 @@
 		</p>
 	</xsl:template>
 
-	<xsl:template match="i|b|u|em|strong|del|ins|sup|sub|li|div|blockquote" mode="text">
+	<xsl:template match="i|b|u|em|strong|del|ins|sup|sub|li|dt|dd|div|blockquote" mode="text">
 		<xsl:element name="{name()}">
 			<xsl:copy-of select="@id | @class"/>
 			<xsl:apply-templates mode="text"/>
@@ -44,19 +44,15 @@
 	</xsl:template>
 	
 	<xsl:template match="span" mode="text">
-		<xsl:choose>
-			<xsl:when test="@style">
-				<span>
-					<xsl:attribute name="style">
-						<xsl:apply-templates select="@style" mode="style"/>
-					</xsl:attribute>
-					<xsl:apply-templates mode="text"/>
-				</span>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:apply-templates mode="text"/>
-			</xsl:otherwise>
-		</xsl:choose>
+		<span>
+			<xsl:copy-of select="@class"/>
+			<xsl:if test="@style">
+				<xsl:attribute name="style">
+					<xsl:apply-templates select="@style" mode="style"/>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:apply-templates mode="text"/>
+		</span>
 	</xsl:template>
 
 	<xsl:template match="@style" mode="style">
@@ -82,16 +78,16 @@
 		</xsl:if>
 	</xsl:template>
 	
-	<xsl:template match="ol|ul" mode="text">
+	<xsl:template match="ol|ul|dl" mode="text">
 		<xsl:element name="{name()}">
 			<xsl:copy-of select="@id | @class"/>
-			<xsl:apply-templates select="li" mode="text"/>
+			<xsl:apply-templates select="li|dt|dd" mode="text"/>
 		</xsl:element>
 	</xsl:template>
 	
 	<xsl:template match="img" mode="text">
 		<img title="{@alt}">
-			<xsl:copy-of select="@src | @alt | @border | @width | @height | @style"/>
+			<xsl:copy-of select="@src | @alt | @border | @width | @height | @style | @class"/>
 			<xsl:if test="@align='right' or @align='left'">
 				<xsl:attribute name="class">
 					<xsl:text>pic-</xsl:text><xsl:value-of select="@align"/>

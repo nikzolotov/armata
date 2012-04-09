@@ -1,7 +1,15 @@
-body{ font-size: 100%; }
-#promo .description{  }
-
+/* hasLayout */
 #header .phone,
-#extra ul li{
+#extra ul li {
 	zoom: 1;
+	}
+
+/* Base */
+body {
+	font-size: 100%;
+	}
+
+/* Extra */
+.b-project-promo .label {
+	position: relative;
 	}

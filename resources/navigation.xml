@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <navigation>
-	<item key="about" name="О компании" index-context-name="Профиль деятельности">
+	<item key="about" name="О компании">
 		<item key="customers" name="Наши заказчики"/>
 		<!--<item key="objects" name="Объекты с нашим участием"/>-->
 		<item key="news" name="Новости" dir="true" hide="true"/>
@@ -70,7 +70,7 @@
 		</item>
 		<item key="other" name="Изделия на заказ" dir="true"/>
 	</item>
-	<item key="production" name="Производство" index-context-name="Производственные возможности">
+	<item key="production" name="Производство">
 		<item key="joiners-shop" name="Столярный цех"/>
 		<item key="press-shop" name="Прессовой цех"/>
 		<item key="paint-shop" name="Цех малярных работ"/>
@@ -79,7 +79,7 @@
 		<item key="furniture-shop" name="Цех корпусной мебели"/>
 		<item key="metal-shop" name="Цех металлообработки"/>
 	</item>
-	<item key="veneering" name="Фанеровка" index-context-name="Услуги по фанеровке (шпонированию)">
+	<item key="veneering" name="Фанеровка">
 		<item key="where-to-use" name="Области применения"/>
 		<item key="tech" name="Технологии фанеровки"/>
 		<item key="types" name="Виды шпона"/>

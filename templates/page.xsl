@@ -276,6 +276,9 @@
 				</div>
 			</div>
 			<div id="extra">
+				<xsl:if test="$index">
+					<xsl:attribute name="class">l-extra-compact</xsl:attribute>
+				</xsl:if>
 				<xsl:call-template name="extra"/>
 			</div>
 		</div>
@@ -312,22 +315,6 @@
 		<xsl:choose>
 			<xsl:when test="context/text">
 				<xsl:apply-templates select="context/text" mode="text"/>
-			</xsl:when>
-			<xsl:when test="$index">
-				<xsl:if test="navigation//item[@index-context-name]">
-					<ul class="context">
-						<xsl:for-each select="navigation//item[@index-context-name]">
-							<li>
-								<a>
-									<xsl:attribute name="href">
-										<xsl:call-template name="navigation-item-path"/>
-									</xsl:attribute>
-									<xsl:value-of select="@index-context-name"/>
-								</a>
-							</li>
-						</xsl:for-each>
-					</ul>
-				</xsl:if>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:text>&#160;</xsl:text>

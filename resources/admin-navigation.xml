@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <navigation base="/admin">
 	<item key="text" name="Текстовые страницы" module="text">
-		<item key="index" name="Главная страница" dir="true"/>
+		<item id="index" key="index" name="Главная страница" dir="true"/>
 	</item>
 	<item key="news" name="Новости" dir="true"/>
 	<item key="projects" name="Проекты" dir="true" module="project">

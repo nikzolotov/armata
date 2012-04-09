@@ -41,6 +41,9 @@
 		width: 155px;
 		padding: 3.25em 0 0 25px;
 		}
+	.l-extra-compact {
+		padding-top: 3px !important;
+		}
 #navigation{
 	float: left;
 	width: 22%;
@@ -403,6 +406,59 @@
 	#extra .text-list li{
 		background-position: 0 .6em;
 		}
+
+/* Project promo */
+.b-project-promo {
+	position: relative;
+	width: 172px;
+	margin: 0 -9px 24px -8px !important;
+	text-align: center;
+	}
+	.b-project-promo .label {
+		position: relative;
+		display: inline;
+		padding: 1px 6px 2px 6px;
+		background: #FA9B39;
+		font-size: 11px;
+		line-height: 14px;
+		}
+	.b-project-promo .promo {
+		margin-top: -8px;
+		padding: 15px 7px 10px 7px;
+		border: 1px solid #999;
+		}
+		.b-project-promo .title {
+			margin-bottom: 6px !important;
+			font-size: 14px !important;
+			line-height: 16px;
+			}
+			.b-project-promo .intro {
+				display: block;
+				margin-bottom: 3px;
+				font: normal 11px/14px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif !important;
+				color: #333;
+				}
+			.b-project-promo .link {
+				display: block;
+				margin: 0 -7px;
+				border: none !important;
+				color: #37548E;
+				}
+				.b-project-promo .text {
+					border-bottom: 1px solid;
+					}
+				.b-project-promo .link:hover .text {
+					border-bottom: 1px dotted;
+					}
+				.b-project-promo .image {
+					display: block;
+					margin-top: 10px !important;
+					}
+		.b-project-promo .desc {
+			margin-bottom: 0 !important;
+			font-size: 11px !important;
+			line-height: 14px !important;
+			}
 
 /* =Footer
 ----------------------------------------------*/
